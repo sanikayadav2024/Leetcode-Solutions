@@ -1,13 +1,11 @@
 class Solution {
   public int singleNumber(int[] nums) {
-    int ones = 0;
-    int threes = 0;
-
-    for (final int num : nums) {
-      ones ^= (num & ~threes);
-      threes ^= (num & ~ones);
-    }
-
-    return ones;
+      Arrays.sort(nums);
+       for(int i = 0; i < nums.length - 3; i += 3){
+        if(nums[i] != nums[i + 2]){
+            return nums[i];
+        }
+       } 
+       return nums[nums.length - 1];
   }
 }
