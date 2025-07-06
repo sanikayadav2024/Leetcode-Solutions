@@ -1,18 +1,12 @@
 class Solution {
     public int findLucky(int[] arr) {
-        HashMap<Integer, Integer> map = new HashMap<>();
+       int[] freq = new int[501];
 
-        for (int n : arr) {
-            map.put(n, map.getOrDefault(n, 0) + 1);
-        }
+       for(int num : arr) freq[num]++;
 
-        int luckyInteger = -1;
-
-        for (int key : map.keySet()) {
-            if (map.get(key) == key) {
-                luckyInteger = key; 
-            }
-        }
-        return luckyInteger;  
+       for(int i = 500; i >0; i--){
+        if(i == freq[i]) return i;
+       } 
+       return -1;
     }
 }
