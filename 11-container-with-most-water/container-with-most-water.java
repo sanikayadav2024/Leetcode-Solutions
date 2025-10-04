@@ -1,15 +1,17 @@
 class Solution {
     public int maxArea(int[] h) {
-        int maxVol = 0;
-        int i = 0;
-        int j = h.length - 1;
+      int maxVol = 0;
+      int l = 0;
+      int u = h.length - 1;
 
-        while(i < j){
-            maxVol = Math.max(maxVol, Math.min(h[i], h[j])*(j - i));
-
-            if(h[i] < h[j]) i++;
-            else j--;
+      while(l < u){
+        maxVol = Math.max(maxVol, Math.min(h[u], h[l])*(u - l));
+        if(h[u] > h[l]){
+            l++;
+        }else{
+            u--;
         }
-        return maxVol;
+      }
+      return maxVol;
     }
 }
