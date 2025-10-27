@@ -1,22 +1,21 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
         int sum = 0;
-        int[] count = new int[bank.length];
+        int prev = 0;
         for(int i = 0; i < bank.length; i++){
+            int count = 0;
             for(char c : bank[i].toCharArray()){
                 if(c - '0' == 1){
-                    count[i]++;
+                    count++;
                 }
             }
-        }
-        for(int i = 0; i < count.length - 1; i++){
-            if(count[i] != 0){
-                for(int j = i + 1; j < count.length; j++){
-                    if(count[j] != 0){
-                        sum = sum + count[i] * count[j];
-                        break;
-                    }
+            if(count != 0){
+                if(prev == 0){
+                    prev = count;
+                    continue;
                 }
+                sum += count * prev;
+                prev = count;
             }
         }
         return sum;
