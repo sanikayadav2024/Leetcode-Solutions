@@ -6,8 +6,6 @@ class Solution {
             hash.put(candy,hash.getOrDefault(candy, 0) + 1);
         }
         int n = candyType.length / 2;
-        if(hash.size() > n) return n;
-        if(hash.size() < n) return hash.size();
-        return n;
+        return Math.min(hash.size(), n);
     }
 }
