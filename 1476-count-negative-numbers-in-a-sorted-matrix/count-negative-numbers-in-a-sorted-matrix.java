@@ -5,17 +5,15 @@ class Solution {
 
         int row = 0;
         int col = n - 1;
-        int count = 0;
+        int cnt = 0;
 
         while(row < m && col >= 0){
-            if(grid[row][col] >= 0){
-                row++;
-            }
-            else{
-                count += m - row;
+            if(grid[row][col] >= 0) row++;
+            else {
+                cnt += m - row;
                 col--;
             }
         }
-        return count;
+        return cnt;
     }
 }
