@@ -1,4 +1,4 @@
-        class Solution {
+class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> res = new ArrayList<>();
         res.add(List.of(1));
