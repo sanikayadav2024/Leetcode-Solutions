@@ -1,11 +1,8 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
         int n = nums.length;
-        
         List<Integer> list = new ArrayList<>();
-
         int size = n / 3;
-
         Map<Integer, Integer> freq = new HashMap<>();
 
         for(int num : nums){
