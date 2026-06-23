@@ -1,16 +1,19 @@
 class Solution {
-    public boolean isHappy(int n) {
-        if(n == 1 || n == 7) return true;
-        while(n > 9){
-            int num = n;
-            int sum = 0;
-            while(num != 0){
-                sum = sum + (num % 10)*(num % 10);
-                num /= 10;
-            }
+    public boolean isHappy(int num) {
+       if(num == 1 || num == 7) return true;
+        while (num > 9){
+            int sum = digitSum(num);
             if(sum == 1 || sum == 7) return true;
-            n = sum;
+            else num = sum;
         }
-        return false;
+        return false;   
+    }
+    private static int digitSum(int num) {
+        int sum = 0;
+        while (num > 0){
+            sum += (num%10)*(num%10);
+            num /= 10;
+        }
+        return sum;
     }
 }
