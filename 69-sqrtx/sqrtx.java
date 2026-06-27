@@ -3,7 +3,7 @@ class Solution {
         if(x == 1 || x == 0) return x;
 
         int l = 1;
-        int u = x;
+        int u = x/2;
         int mid = -1;
         while(l <= u){
             mid = l+(u- l)/2;
