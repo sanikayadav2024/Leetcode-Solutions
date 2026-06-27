@@ -1,27 +1,18 @@
 class Solution {
     public int pivotIndex(int[] arr) {
-      int n = arr.length;
-        int[] left = new int[n];
-        int[] right = new int[n];
+        int n = arr.length;
+         int leftSum = 0;
+        int rightSum = 0;
+        int total = 0;
 
+        for(int i : arr){
+            total += i;
+        }
         for(int i = 0; i < n; i++){
-            int lindex = 0;
-            int rindex = n - 1;
-            while(lindex < i){
-                left[i] += arr[lindex];
-                lindex++;
-            }
-            while(rindex > i){
-                right[i] += arr[rindex];
-                rindex--;
-            }
+            rightSum = total - leftSum - arr[i];
+            if(rightSum == leftSum) return i;
+            leftSum += arr[i];
         }
-
-        for (int i = 0; i < n; i++) {
-            if(right[i] == left[i]){
-                return  i;
-            }
-        }
-        return -1;  
+        return -1;
     }
 }
