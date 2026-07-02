@@ -1,16 +1,16 @@
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
+        Set<List<Integer>> ans = new HashSet<>();
         List<Integer> subset = new ArrayList<>();
         Arrays.sort(nums);
+
         create(nums, 0, ans, subset);
-    
-        return ans;
+
+        return new ArrayList<>(ans);
     }
 
-    public void create(int[] nums, int index, List<List<Integer>> ans, List<Integer> subset) {
+    public void create(int[] nums, int index, Set<List<Integer>> ans, List<Integer> subset) {
         if (index == nums.length) {
-            if (!ans.contains(subset))
                 ans.add(new ArrayList<>(subset));
             return;
         }
