@@ -1,23 +1,23 @@
 class Solution {
-    public List<Integer> lexicalOrder(int n) {
-     List<Integer> list = new ArrayList<>();
-        for (int i = 1; i <= 9 ; i++) {
-            create(list, i, n);
+   public static List<Integer> lexicalOrder(int n) {
+        List<Integer> ans = new ArrayList<>();
+        for (int i=1;i<= 9;i++) {
+            solve(i,n,ans);
         }
-        return list;
+        return ans;
     }
-    public static void create(List<Integer> res,int i, int n){
-        if(i > n){
+    public static void solve(int curr,int n,List<Integer> ans) {
+        if (curr>n) {
             return;
         }
-        res.add(i);
-        if(i*10 > n) return;
-        for (int j = 0; j <= 9; j++) {
-            int newNum = i*10+j;
-            if(newNum > n){
+        ans.add(curr);
+        for (int i=0;i<=9;i++) {
+            int newn =curr*10 + i;
+            if (newn>n) {
                 return;
             }
-            create(res,newNum, n);
+            solve(newn,n,ans);
         }
     }
+        
 }
