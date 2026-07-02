@@ -1,34 +1,31 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        List<String> res = new ArrayList<>();
-
-        if(digits == null || digits.length() == 0){
-            return res;
+        if (digits.length() == 0) {
+            return new ArrayList<>();
         }
 
-        String[] mapping = new String[]{
-            "", 
-            "",     "abc",  "def", 
-            "ghi",  "jkl",  "mno", 
-            "pqrs", "tuv",  "wxyz"
+        String[] mapping = {
+                "",
+                "", "abc", "def",
+                "ghi", "jkl", "mno",
+                "pqrs", "tuv", "wxyz"
         };
-        phoneComb(digits, 0, new StringBuilder(), mapping, res);
-        return res;
+        List<String> ans = new ArrayList<>();
+        create(digits, mapping, 0, ans, new StringBuilder());
+        return ans;
     }
 
-    private void phoneComb(String digits, int idx, StringBuilder curr, String[] mapping, List<String> res){
-       if(idx == digits.length()){
-        res.add(curr.toString());
-        return;
-       } 
+    private static void create(String digits, String[] mapping, int i, List<String> ans, StringBuilder curr) {
+        if (i == digits.length()) {
+            ans.add(curr.toString());
+            return;
+        }
+        String str = mapping[digits.charAt(i) - '0'];
 
-       String letters = mapping[digits.charAt(idx) - '0'];
-
-       for(char c : letters.toCharArray()){
-        curr.append(c);
-
-        phoneComb(digits, idx+1, curr, mapping,res);
-        curr.deleteCharAt(curr.length() - 1);
-       }
+        for (char ch : str.toCharArray()) {
+            curr.append(ch);
+            create(digits, mapping, i + 1, ans, curr);
+            curr.deleteCharAt(curr.length() - 1);
+        }
     }
 }
