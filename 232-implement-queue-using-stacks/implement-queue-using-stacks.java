@@ -14,9 +14,10 @@ class MyQueue {
     }
     
     public int pop() {
-        while(!stack1.isEmpty()){
-            stack2.push(stack1.pop());
-        }
+        // while(!stack1.isEmpty()){
+        //     stack2.push(stack1.pop());
+        // }
+        peek();
         return stack2.pop();
     }
     
