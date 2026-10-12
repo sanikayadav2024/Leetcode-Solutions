@@ -3,7 +3,7 @@ class Solution {
         List<List<String>> list = new ArrayList<>();
         char[][] board = new char[n][n];
         for (int i = 0; i < n; i++) {
-            Arrays.fill(board[i], '.');
+            Arrays.fill(board[i], '.');      
         }
         queens(board, 0, list);
         return list;
