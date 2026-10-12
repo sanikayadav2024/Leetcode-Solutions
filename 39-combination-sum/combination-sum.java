@@ -1,23 +1,21 @@
 class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> list = new ArrayList<>();
-        comb(candidates, target, 0, new ArrayList<>(), 0, list);
-        return list;
+        find(candidates, target, 0, new ArrayList<>());
+        return (ans);
     }
 
-    void comb(int[] candidates, int target, int index, List<Integer> comb,int total, List<List<Integer>> list){
-        if(total == target){
-            list.add(new ArrayList<>(comb));
+    private void find(int coins[], int target, int idx, List<Integer> wallet){
+        if(target == 0){
+            ans.add(new ArrayList<>(wallet));
             return;
         }
-
-        if(total > target || index >= candidates.length){
-            return;
+        for(int i = idx; i < coins.length; i++){
+            if(coins[i] <= target){
+                wallet.add(coins[i]);
+                find(coins, target-coins[i], i, wallet);
+                wallet.remove(wallet.size()-1);
+            }
         }
-
-        comb.add(candidates[index]);
-        comb(candidates, target, index, comb, total + candidates[index], list);
-        comb.remove(comb.size() - 1);
-        comb(candidates, target, index + 1, comb, total, list);
     }
 }
